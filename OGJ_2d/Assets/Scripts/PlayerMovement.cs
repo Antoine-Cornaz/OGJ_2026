@@ -7,12 +7,21 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D _rb;
     private Vector2 _moveInput;
     
-    [SerializeField] private float _speed = 100;
+    [SerializeField] private float _speed = 1;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    private void Start()
+
+    private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
+        GameManager.Instance.OnGameReset += OnGameReset;
+    }
+
+    private void OnGameReset()
+    {
+        Debug.Log($"PlayerMovement: OnGameReset");
+        transform.position = Vector3.zero;
+        _rb.linearVelocity = Vector2.zero;
     }
 
     // Update is called once per frame
