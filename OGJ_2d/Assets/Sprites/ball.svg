@@ -9,6 +9,9 @@
    id="svg1"
    inkscape:version="1.4.3 (0d15f75042, 2025-12-25)"
    sodipodi:docname="ball.svg"
+   inkscape:export-filename="ball.png"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -24,10 +27,10 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="px"
-     inkscape:zoom="0.734395"
-     inkscape:cx="371.73456"
-     inkscape:cy="349.94792"
-     inkscape:window-width="1436"
+     inkscape:zoom="0.45817591"
+     inkscape:cx="45.833924"
+     inkscape:cy="220.43935"
+     inkscape:window-width="984"
      inkscape:window-height="847"
      inkscape:window-x="0"
      inkscape:window-y="0"
@@ -35,6 +38,54 @@
      inkscape:current-layer="layer1" />
   <defs
      id="defs1">
+    <pattern
+       inkscape:collect="always"
+       xlink:href="#halftones"
+       preserveAspectRatio="xMidYMid"
+       id="pattern2"
+       patternTransform="scale(8)"
+       x="0"
+       y="0" />
+    <pattern
+       patternUnits="userSpaceOnUse"
+       width="10"
+       height="10"
+       preserveAspectRatio="xMidYMid"
+       style="fill:#000000"
+       id="halftones"
+       x="0"
+       y="0"
+       inkscape:label="Retinatura"
+       inkscape:collect="always"
+       inkscape:isstock="true">
+      <g
+         id="fullPattern"
+         style="display:inline"
+         transform="scale(0.1)">
+        <circle
+           style="fill-opacity:1;stroke:none;paint-order:markers fill stroke;stop-color:#000000"
+           id="circle10"
+           cx="50"
+           cy="50"
+           r="25" />
+        <path
+           id="circle37"
+           style="paint-order:markers fill stroke"
+           d="M 25,0 A 25,25 0 0 1 0,25 25,25 0 0 1 -25,0 25,25 0 0 1 0,-25 25,25 0 0 1 25,0 Z" />
+        <path
+           id="circle39"
+           style="paint-order:markers fill stroke"
+           d="M 125,0 A 25,25 0 0 1 100,25 25,25 0 0 1 75,0 25,25 0 0 1 100,-25 25,25 0 0 1 125,0 Z" />
+        <path
+           id="circle43"
+           style="paint-order:markers fill stroke"
+           d="M 25,100 A 25,25 0 0 1 0,125 25,25 0 0 1 -25,100 25,25 0 0 1 0,75 25,25 0 0 1 25,100 Z" />
+        <path
+           id="circle45"
+           style="paint-order:markers fill stroke"
+           d="m 125,100 a 25,25 0 0 1 -25,25 25,25 0 0 1 -25,-25 25,25 0 0 1 25,-25 25,25 0 0 1 25,25 z" />
+      </g>
+    </pattern>
     <pattern
        inkscape:collect="always"
        xlink:href="#pattern6-7"
@@ -68,13 +119,13 @@
      inkscape:groupmode="layer"
      id="layer1">
     <circle
-       style="fill:#f5f976;stroke:#000000;stroke-width:7.55905512;stroke-dasharray:none;fill-opacity:1"
+       style="display:inline;fill:#f5f976;fill-opacity:1;stroke:#000000;stroke-width:7.55906;stroke-dasharray:none"
        id="path1"
        cx="360"
        cy="360"
        r="360" />
     <path
-       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:7.51989;stroke-dasharray:none"
+       style="display:inline;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:7.51989;stroke-dasharray:none"
        id="path1-7"
        sodipodi:type="arc"
        sodipodi:cx="360"
@@ -89,22 +140,28 @@
        style="fill:#f5f976;fill-opacity:1;stroke:url(#pattern7);stroke-width:0;stroke-dasharray:none"
        d="M 486.31781,358.22518 587.27218,579.67347 699.08185,358.22518 Z"
        id="path7" />
+    <circle
+       style="display:inline;fill:url(#pattern2);stroke:#000000;stroke-width:7.55906;stroke-dasharray:none;opacity:0.53886275"
+       id="path1-9"
+       cx="363.77954"
+       cy="363.77954"
+       r="360" />
     <ellipse
-       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:7.55906;stroke-dasharray:none"
+       style="display:inline;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:7.55906;stroke-dasharray:none"
        id="path3"
        cx="546.7818"
        cy="259.88217"
        rx="14.152"
        ry="84.912003" />
     <ellipse
-       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:8.01387;stroke-dasharray:none"
+       style="display:inline;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:8.01387;stroke-dasharray:none"
        id="path4"
        cx="631.69379"
        cy="261.1687"
        rx="13.924596"
        ry="91.117317" />
     <ellipse
-       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:6.38312;stroke-dasharray:none"
+       style="display:inline;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:6.38312;stroke-dasharray:none"
        id="path4-0"
        cx="433.17578"
        cy="-601.85919"
@@ -112,11 +169,11 @@
        ry="54.63863"
        transform="matrix(-0.02270691,0.99974216,-0.9999996,8.9414284e-4,0,0)" />
     <path
-       style="fill:#ff1515;fill-opacity:1;stroke:#000000;stroke-width:4.53465;stroke-dasharray:none"
+       style="display:inline;fill:#ff1515;fill-opacity:1;stroke:#000000;stroke-width:4.53465;stroke-dasharray:none"
        d="m 575.19257,463.67251 15.04254,37.18756 21.05955,-38.87791 z"
        id="path5" />
     <path
-       style="fill:#ff1515;fill-opacity:1;stroke:#000000;stroke-width:7.55906;stroke-dasharray:none"
+       style="display:inline;fill:#ff1515;fill-opacity:1;stroke:#000000;stroke-width:7.55906;stroke-dasharray:none"
        d="m 590.19879,509.58315 -39.87154,87.71739 37.21344,39.87154 34.55534,-39.87154 z"
        id="path6" />
     <path
