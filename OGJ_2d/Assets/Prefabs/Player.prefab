@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7677764614371437821}
   - component: {fileID: 1450769739135266116}
   - component: {fileID: 2682900177679796385}
-  - component: {fileID: 4581213619769034296}
+  - component: {fileID: 4864372464733258459}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -107,7 +107,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4358fb0c93a575aa18da0053b7470a70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  _speed: 1
+  speed: 1
 --- !u!58 &1450769739135266116
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -171,7 +171,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &4581213619769034296
+--- !u!114 &4864372464733258459
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -180,24 +180,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2933752677174191835}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Script: {fileID: 11500000, guid: 255dd7d10689ce96289a4b4ca27cd4d5, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.PlayerInput
-  m_Actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
-  m_NotificationBehavior: 0
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents: []
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
-  m_DefaultActionMap: 
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerDie
+  dieHeight: -10

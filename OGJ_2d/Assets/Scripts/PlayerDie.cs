@@ -4,7 +4,7 @@ using UnityEngine;
 public class PlayerDie : MonoBehaviour
 {
 
-    [SerializeField] private float dieHeight = 8f; 
+    [SerializeField] private float dieHeight = -3f; 
     private GameManager _gameManager;
     private bool isDead = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -12,7 +12,16 @@ public class PlayerDie : MonoBehaviour
     private void Awake()
     {
         _gameManager = GameManager.Instance;
+    }
+
+    private void OnEnable()
+    {
         _gameManager.OnGameStart += OnStart;
+    }
+
+    private void OnDisable()
+    {
+        _gameManager.OnGameStart -= OnStart;
     }
 
     private void OnStart()
@@ -21,7 +30,7 @@ public class PlayerDie : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         if (isDead)  return;
         if (transform.position.y >= dieHeight) return;
