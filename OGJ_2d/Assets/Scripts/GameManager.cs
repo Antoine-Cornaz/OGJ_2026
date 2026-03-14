@@ -7,6 +7,7 @@ using UnityEngine.InputSystem;
 [DefaultExecutionOrder(-1000)]
 public class GameManager : Singleton<GameManager>
 {
+    
     public event Action OnGameStart;
     public event Action GameEnded;
     public event Action OnGameReset;
@@ -14,6 +15,12 @@ public class GameManager : Singleton<GameManager>
     private bool isGameOn = false;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
+
+    protected override void Awake()
+    {
+        base.Awake();
+        InputManager.Instance.OnRespawnButtonPressed += OnRespawn;
+    }
     
     private void Start()
     {
@@ -40,7 +47,7 @@ public class GameManager : Singleton<GameManager>
     }
     
 
-    public void OnRespawn()
+    private void OnRespawn()
     {
         Debug.Log("GameManager: OnRespawn");
         CallGameResetAndStart();
