@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7677764614371437821}
   - component: {fileID: 1450769739135266116}
   - component: {fileID: 2682900177679796385}
+  - component: {fileID: 4864372464733258459}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -171,3 +172,16 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &4864372464733258459
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2933752677174191835}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 255dd7d10689ce96289a4b4ca27cd4d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerDie
+  dieHeight: -10

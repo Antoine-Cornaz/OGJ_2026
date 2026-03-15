@@ -30,6 +30,11 @@ public class GameManager : Singleton<GameManager>
     public void CallGameResetAndStart()
     {
         if (isGameOn) return;
+        ForceCallGameResetAndStart();
+    }
+
+    public void ForceCallGameResetAndStart()
+    {
         isGameOn = true;
         Debug.Log("GameManager: Call game reset and start");
         OnGameReset?.Invoke();
