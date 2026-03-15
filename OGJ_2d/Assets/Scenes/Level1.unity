@@ -1158,6 +1158,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7677764614371437821, guid: 2293694779f01f8ab83f5478488372dd, type: 3}
+      propertyPath: colTimer
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 7677764614371437821, guid: 2293694779f01f8ab83f5478488372dd, type: 3}
       propertyPath: stiffness
       value: 70
       objectReference: {fileID: 0}
@@ -1541,7 +1545,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5592872264835748614, guid: 97b0bb3d4843dcf608071bd8086fe5b0, type: 3}
       propertyPath: orthographic size
-      value: 7
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5592872264835748614, guid: 97b0bb3d4843dcf608071bd8086fe5b0, type: 3}
       propertyPath: m_BackGroundColor.a

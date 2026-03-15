@@ -65,10 +65,13 @@ public class ElasticPlatform : MonoBehaviour
             SmoothScaleTowardTarget();
         }
 
-        if (isDragging && mouse.leftButton.wasReleasedThisFrame && doesReturn)
+        if (isDragging && mouse.leftButton.wasReleasedThisFrame)
         {
             isDragging = false;
-            StartReturn(mouseWorld);
+            if (doesReturn)
+            {
+                StartReturn(mouseWorld);
+            }
         }
 
         if (!isDragging && isReturning && doesReturn)
