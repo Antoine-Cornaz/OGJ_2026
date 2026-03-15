@@ -11,7 +11,7 @@ public class PlayerMovement : MonoBehaviour
  
     private Rigidbody2D _rb;
     private Vector2 _moveInput;
-    private Vector2 _spawnPosition;
+    private Vector3 _spawnPosition;
 
     private bool stretching;
     private Vector3 stretchOrigin;

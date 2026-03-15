@@ -330,6 +330,7 @@ MonoBehaviour:
   baseScaleSpeed: 30
   minScaleSpeed: 0.75
   returnDuration: 0.8
+  doesReturn: 0
 --- !u!61 &694716480
 BoxCollider2D:
   m_ObjectHideFlags: 0

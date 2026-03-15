@@ -13,6 +13,7 @@ public class ElasticPlatform : MonoBehaviour
 
     [Header("Return Animation")]
     [SerializeField] private float returnDuration = 0.8f;
+    [SerializeField] private bool doesReturn = true;
 
     private Camera mainCamera;
     private Collider2D col;
@@ -38,7 +39,7 @@ public class ElasticPlatform : MonoBehaviour
     private void Update()
     {
         Mouse mouse = Mouse.current;
-        if (mouse == null || mainCamera == null || col == null) return;
+        if (mouse == null || !mainCamera || !col) return;
 
         Vector3 mouseScreen = mouse.position.ReadValue();
         Vector3 mouseWorld = mainCamera.ScreenToWorldPoint(mouseScreen);
@@ -60,13 +61,12 @@ public class ElasticPlatform : MonoBehaviour
             SmoothScaleTowardTarget();
         }
 
-        if (isDragging && mouse.leftButton.wasReleasedThisFrame)
+        if (isDragging && mouse.leftButton.wasReleasedThisFrame && doesReturn)
         {
             isDragging = false;
-            StartReturn();
         }
 
-        if (!isDragging && isReturning)
+        if (!isDragging && isReturning && doesReturn)
         {
             AnimateReturnElastic();
         }

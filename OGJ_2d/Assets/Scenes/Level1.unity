@@ -575,7 +575,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc5b879cd26712d3b8d678ed1508700a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  LevelName: level2
+  Level: 2
 --- !u!61 &774622624
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -815,7 +815,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc5b879cd26712d3b8d678ed1508700a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  LevelName: level2
+  Level: 2
 --- !u!61 &956164617
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1127,7 +1127,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5737462255704811825, guid: 2293694779f01f8ab83f5478488372dd, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 5737462255704811825, guid: 2293694779f01f8ab83f5478488372dd, type: 3}
       propertyPath: m_LocalRotation.w
