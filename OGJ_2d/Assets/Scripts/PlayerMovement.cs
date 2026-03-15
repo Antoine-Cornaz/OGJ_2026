@@ -5,19 +5,29 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float speed = 1;
+
+    public float stiffness;
  
     private Rigidbody2D _rb;
     private Vector2 _moveInput;
     private Vector2 _spawnPosition;
+
+    private bool stretching;
+    private Vector2 stretchOrigin;
+    private Vector3 originalScale;
+
+    private Collider2D col;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
+        col = GetComponent<Collider2D>();
         GameManager.Instance.OnGameReset += OnGameReset;
         InputManager.Instance.OnMovePressed += OnMove;
         _spawnPosition = transform.position;
+        originalScale = transform.localScale;
     }
 
     private void OnGameReset()
@@ -42,6 +52,37 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        Mouse mouse = Mouse.current;
+
+        Vector3 mouseScreen = mouse.position.ReadValue();
+        Vector3 mouseWorld = Camera.main.ScreenToWorldPoint(mouseScreen);
+        mouseWorld.z = 0f;
+
+
+        if (mouse.leftButton.wasPressedThisFrame)
+        {
+            if (col.OverlapPoint(mouseWorld))
+            {
+                stretching = true;
+                stretchOrigin = new Vector2(mouseWorld.x, mouseWorld.y);
+                col.enabled = false;
+                _rb.Sleep();
+            }
+        }
+
+        if (stretching && mouse.leftButton.isPressed)
+        {
+            stretchSprite(mouseWorld);
+        }
+
+        if (stretching && mouse.leftButton.wasReleasedThisFrame)
+        {
+            lauch(mouseWorld);
+        }
+    }
+
     private void OnMove(InputValue value)
     {
         Debug.Log($"PlayerMovement: OnMove {value}");
@@ -57,5 +98,27 @@ public class PlayerMovement : MonoBehaviour
     private void GoRight()
     {
         _rb.AddTorque(-speed);
+    }
+
+    private void stretchSprite(Vector3 target)
+    {
+        Vector2 stretchDir = target - transform.position;
+
+        float angle = 180 - Vector2.Angle(stretchDir, Vector2.right);
+        transform.rotation = Quaternion.Euler(0f, 0f, stretchDir.y < 0 ? angle : - angle);
+
+        float stretchfactor = stretchDir.magnitude / 10;
+        transform.localScale = originalScale + new Vector3(stretchfactor, 0f, 0f);
+    }
+
+    private void lauch(Vector3 finalStretch)
+    {
+        transform.localScale = originalScale;
+        col.enabled = true;
+        _rb.WakeUp();
+
+        Vector2 stretchForce = - (finalStretch - transform.position) * stiffness;
+        _rb.AddForce(stretchForce);
+        Debug.Log("force added " + stretchForce);
     }
 }

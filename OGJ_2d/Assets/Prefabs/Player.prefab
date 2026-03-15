@@ -107,6 +107,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   speed: 1
+  stiffness: 50
 --- !u!58 &1450769739135266116
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -159,7 +160,7 @@ Rigidbody2D:
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 566dab43685b4794cbfed78dd1e65bcc, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
