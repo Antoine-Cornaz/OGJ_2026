@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float speed = 1;
+    [SerializeField] private float maxStretch = 10;
 
     public float stiffness;
  
@@ -134,8 +135,14 @@ public class PlayerMovement : MonoBehaviour
         transform.localScale = originalScale;
         transform.position = stretchOrigin;
         _rb.WakeUp();
+        
+        Vector2 stretchDir = transform.position - finalStretch;
+        if (stretchDir.magnitude > maxStretch)
+        {
+            stretchDir = stretchDir.normalized * maxStretch;
+        }
 
-        Vector2 stretchForce = - (finalStretch - transform.position) * stiffness;
+        Vector2 stretchForce = stretchDir * stiffness;
         _rb.AddForce(stretchForce);
         Debug.Log("force added " + stretchForce);
 
