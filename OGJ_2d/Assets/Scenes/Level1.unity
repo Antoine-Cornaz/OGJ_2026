@@ -1163,7 +1163,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7677764614371437821, guid: 2293694779f01f8ab83f5478488372dd, type: 3}
       propertyPath: stiffness
-      value: 70
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 7677764614371437821, guid: 2293694779f01f8ab83f5478488372dd, type: 3}
+      propertyPath: maxStretch
+      value: 0.025
       objectReference: {fileID: 0}
     - target: {fileID: 7677764614371437821, guid: 2293694779f01f8ab83f5478488372dd, type: 3}
       propertyPath: maxTorqueStretch
