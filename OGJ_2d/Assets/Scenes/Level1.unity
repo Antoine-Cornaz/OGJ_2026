@@ -347,6 +347,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 546ad757a69404582bffc6511800c664, type: 3}
+--- !u!1 &150042948 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6406372116246637857, guid: 97b0bb3d4843dcf608071bd8086fe5b0, type: 3}
+  m_PrefabInstance: {fileID: 6908965707546648246}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &185534035 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 666401114472361367, guid: 546ad757a69404582bffc6511800c664, type: 3}
@@ -856,6 +861,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1db4244b16bbf64b5abcf8435313a891, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OffsetScrolling
+  ToFollow: {fileID: 150042948}
   scrollSpeed: 1
 --- !u!212 &1678654974
 SpriteRenderer:
