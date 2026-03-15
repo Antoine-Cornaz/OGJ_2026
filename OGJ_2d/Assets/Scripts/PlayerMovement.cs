@@ -13,12 +13,17 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 _spawnPosition;
 
     private bool stretching;
-    private Vector2 stretchOrigin;
+    private Vector3 stretchOrigin;
     private Vector3 originalScale;
 
     private Collider2D col;
 
     public float maxTorqueStretch;
+
+    // Reactivate collider after stretch timer
+    public float colTimer = 1;
+    private bool colTimerOn;
+    private float colTimerTarget;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
@@ -70,7 +75,7 @@ public class PlayerMovement : MonoBehaviour
                 && Mathf.Abs(_rb.linearVelocityY) < 0.5)
             {
                 stretching = true;
-                stretchOrigin = new Vector2(mouseWorld.x, mouseWorld.y);
+                stretchOrigin = transform.position;
                 col.enabled = false;
                 _rb.Sleep();
             }
@@ -84,6 +89,12 @@ public class PlayerMovement : MonoBehaviour
         if (stretching && mouse.leftButton.wasReleasedThisFrame)
         {
             lauch(mouseWorld);
+        }
+
+        if (colTimerOn && colTimerTarget <= Time.time)
+        {
+            colTimerOn = false;
+            col.enabled = true;
         }
     }
 
@@ -111,14 +122,17 @@ public class PlayerMovement : MonoBehaviour
         float angle = 180 - Vector2.Angle(stretchDir, Vector2.right);
         transform.rotation = Quaternion.Euler(0f, 0f, stretchDir.y < 0 ? angle : - angle);
 
-        float stretchfactor = stretchDir.magnitude / 10;
-        transform.localScale = originalScale + new Vector3(stretchfactor, 0f, 0f);
+        float stretchStrength = stretchDir.magnitude / 10;
+        transform.localScale = originalScale + new Vector3(stretchStrength, 0f, 0f);
+
+        float stretchRatio = originalScale.x / transform.localScale.x;
+        transform.position = stretchOrigin + (new Vector3(stretchDir.x, stretchDir.y, 0f) * 0.5f);
     }
 
     private void lauch(Vector3 finalStretch)
     {
         transform.localScale = originalScale;
-        col.enabled = true;
+        transform.position = stretchOrigin;
         _rb.WakeUp();
 
         Vector2 stretchForce = - (finalStretch - transform.position) * stiffness;
@@ -126,5 +140,7 @@ public class PlayerMovement : MonoBehaviour
         Debug.Log("force added " + stretchForce);
 
         stretching = false;
+        colTimerOn = true;   
+        colTimerTarget = Time.time + colTimer;
     }
 }
