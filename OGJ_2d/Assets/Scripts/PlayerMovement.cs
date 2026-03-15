@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float speed = 1;
-    [SerializeField] private float maxStretch = 10;
+    [SerializeField] private float maxStretch = 0.05f;
 
     public float stiffness;
  
@@ -25,7 +25,10 @@ public class PlayerMovement : MonoBehaviour
     public float colTimer = 1;
     private bool colTimerOn;
     private float colTimerTarget;
-    
+
+    private float maxStretchForce;
+    private bool stopStretch = false;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
     private void Awake()
@@ -67,7 +70,6 @@ public class PlayerMovement : MonoBehaviour
         Vector3 mouseScreen = mouse.position.ReadValue();
         Vector3 mouseWorld = Camera.main.ScreenToWorldPoint(mouseScreen);
         mouseWorld.z = 0f;
-
 
         if (mouse.leftButton.wasPressedThisFrame)
         {
@@ -124,10 +126,20 @@ public class PlayerMovement : MonoBehaviour
         transform.rotation = Quaternion.Euler(0f, 0f, stretchDir.y < 0 ? angle : - angle);
 
         float stretchStrength = stretchDir.magnitude / 10;
-        transform.localScale = originalScale + new Vector3(stretchStrength, 0f, 0f);
+        Vector3 tempScale = originalScale + new Vector3(stretchStrength, -stretchStrength / 4, 0f);
 
-        float stretchRatio = originalScale.x / transform.localScale.x;
-        transform.position = stretchOrigin + (new Vector3(stretchDir.x, stretchDir.y, 0f) * 0.5f);
+        if (tempScale.y >= maxStretch)
+        {
+            transform.localScale = tempScale;
+            stopStretch = false;
+        } else if (!stopStretch)
+        {
+            stopStretch = true;
+            maxStretchForce = stretchDir.magnitude;
+        }
+
+        if (stopStretch) stretchDir = stretchDir.normalized * maxStretchForce;
+        transform.position = stretchOrigin + (new Vector3(stretchDir.x, stretchDir.y, 0f) * 0.4f);
     }
 
     private void lauch(Vector3 finalStretch)
@@ -137,9 +149,9 @@ public class PlayerMovement : MonoBehaviour
         _rb.WakeUp();
         
         Vector2 stretchDir = transform.position - finalStretch;
-        if (stretchDir.magnitude > maxStretch)
+        if (stopStretch)
         {
-            stretchDir = stretchDir.normalized * maxStretch;
+            stretchDir = stretchDir.normalized * maxStretchForce;
         }
 
         Vector2 stretchForce = stretchDir * stiffness;
