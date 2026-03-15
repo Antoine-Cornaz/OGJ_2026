@@ -4,7 +4,13 @@ using UnityEngine.SceneManagement;
 
 public class TeleportToNextLevel : MonoBehaviour
 {
-    [SerializeField] private string LevelName = "Level2";
+    [SerializeField] private int Level = 2;
+    private GameManager _gameManager;
+
+    private void Awake()
+    {
+        _gameManager = GameManager.Instance;
+    }
 
     public void OnTriggerEnter2D(Collider2D other)
     {
@@ -17,7 +23,9 @@ public class TeleportToNextLevel : MonoBehaviour
     // Update is called once per frame
     private void teleportToNextLevel()
     {
-        SceneManager.LoadScene(LevelName);
+        string levelName = "level" + Level;
+        SceneManager.LoadScene(levelName);
         GameManager.Instance.ForceCallGameResetAndStart();
+        _gameManager.CallSetLevelGame(Level);
     }
 }

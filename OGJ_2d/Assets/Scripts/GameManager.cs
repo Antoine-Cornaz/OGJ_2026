@@ -12,6 +12,8 @@ public class GameManager : Singleton<GameManager>
     public event Action GameEnded;
     public event Action OnGameReset;
 
+    public event Action<int> OnSetLevelGame;
+
     private bool isGameOn = false;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -31,6 +33,11 @@ public class GameManager : Singleton<GameManager>
     {
         if (isGameOn) return;
         ForceCallGameResetAndStart();
+    }
+
+    public void CallSetLevelGame(int level)
+    {
+        OnSetLevelGame?.Invoke(level);
     }
 
     public void ForceCallGameResetAndStart()

@@ -4,7 +4,7 @@ using UnityEngine;
 public class PlayerDie : MonoBehaviour
 {
 
-    [SerializeField] private float dieHeight = -3f; 
+    private float dieHeight = -10f; 
     private GameManager _gameManager;
     private bool isDead = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -12,6 +12,17 @@ public class PlayerDie : MonoBehaviour
     private void Awake()
     {
         _gameManager = GameManager.Instance;
+        _gameManager.OnSetLevelGame += OnSetLevel;
+    }
+
+    private void OnSetLevel(int level)
+    {
+        dieHeight = level switch
+        {
+            1 => -10,
+            2 => -50,
+            _ => dieHeight
+        };
     }
 
     private void OnEnable()
