@@ -10,6 +10,8 @@ public class InputManager : Singleton<InputManager>
     public event Action OnRespawnButtonPressed;
     public event Action<InputValue> OnMovePressed;
     
+    private bool activated = true;
+    
     
     public void OnMove(InputValue value)
     {

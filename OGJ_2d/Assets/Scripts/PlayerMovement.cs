@@ -18,6 +18,8 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 originalScale;
 
     private Collider2D col;
+
+    public float maxTorqueStretch;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
@@ -64,7 +66,9 @@ public class PlayerMovement : MonoBehaviour
 
         if (mouse.leftButton.wasPressedThisFrame)
         {
-            if (col.OverlapPoint(mouseWorld))
+            if (col.OverlapPoint(mouseWorld) 
+                && _rb.totalTorque < maxTorqueStretch 
+                && Mathf.Abs(_rb.linearVelocityY) < 0.5)
             {
                 stretching = true;
                 stretchOrigin = new Vector2(mouseWorld.x, mouseWorld.y);
@@ -87,7 +91,7 @@ public class PlayerMovement : MonoBehaviour
     private void OnMove(InputValue value)
     {
         Debug.Log($"PlayerMovement: OnMove {value}");
-        _moveInput = value.Get<Vector2>();
+        if (!stretching) _moveInput = value.Get<Vector2>();
     }
 
 
@@ -127,5 +131,7 @@ public class PlayerMovement : MonoBehaviour
         Vector2 stretchForce = stretchDir * stiffness;
         _rb.AddForce(stretchForce);
         Debug.Log("force added " + stretchForce);
+
+        stretching = false;
     }
 }
