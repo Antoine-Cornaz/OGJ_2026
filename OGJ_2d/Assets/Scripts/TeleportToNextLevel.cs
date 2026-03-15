@@ -21,7 +21,7 @@ public class TeleportToNextLevel : MonoBehaviour
     }
 
     // Update is called once per frame
-    private void teleportToNextLevel()
+    public void teleportToNextLevel()
     {
         string levelName = "level" + Level;
         SceneManager.LoadScene(levelName);
