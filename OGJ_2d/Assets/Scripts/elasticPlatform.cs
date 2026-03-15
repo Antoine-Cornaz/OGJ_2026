@@ -68,10 +68,7 @@ public class ElasticPlatform : MonoBehaviour
         if (isDragging && mouse.leftButton.wasReleasedThisFrame && doesReturn)
         {
             isDragging = false;
-<<<<<<< HEAD
             StartReturn(mouseWorld);
-=======
->>>>>>> 99f82682341fa2762407de812101c596780bcdc8
         }
 
         if (!isDragging && isReturning && doesReturn)
