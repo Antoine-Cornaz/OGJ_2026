@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+[RequireComponent(typeof(Collider2D))]
 public class ElasticPlatform : MonoBehaviour
 {
     [Header("Stretch")]
@@ -26,6 +27,9 @@ public class ElasticPlatform : MonoBehaviour
 
     private bool isReturning;
     private float returnTimer;
+
+    private float storedForce;
+    public float forceScale;
 
     private void Awake()
     {
@@ -63,7 +67,7 @@ public class ElasticPlatform : MonoBehaviour
         if (isDragging && mouse.leftButton.wasReleasedThisFrame)
         {
             isDragging = false;
-            StartReturn();
+            StartReturn(mouseWorld);
         }
 
         if (!isDragging && isReturning)
@@ -137,11 +141,13 @@ public class ElasticPlatform : MonoBehaviour
         );
     }
 
-    private void StartReturn()
+    private void StartReturn(Vector3 final)
     {
         isReturning = true;
         returnTimer = 0f;
         returnStartScale = transform.localScale;
+
+        storedForce = (final - transform.position).magnitude * forceScale;
     }
 
     private void AnimateReturnElastic()
@@ -156,6 +162,7 @@ public class ElasticPlatform : MonoBehaviour
         {
             transform.localScale = originalScale;
             isReturning = false;
+            storedForce = 0f;
         }
     }
 
@@ -167,5 +174,26 @@ public class ElasticPlatform : MonoBehaviour
         if (x == 1f) return 1f;
 
         return Mathf.Pow(2f, -10f * x) * Mathf.Sin((x * 10f - 0.75f) * c4) + 1f;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.collider.CompareTag("Player") && isReturning)
+        {
+            Vector2 incomingDir = collision.rigidbody.linearVelocity.normalized;
+            Vector2 contactNormal = collision.GetContact(0).normal;
+            Vector2 outDir = Vector2.Reflect(incomingDir, contactNormal);
+
+            if (Vector2.Angle(outDir, contactNormal) > 45f)
+            {
+                Vector3 n = new Vector3(contactNormal.x, contactNormal.y, 0f);
+                Vector3 o = new Vector3(outDir.x, outDir.y, 0f);
+                o = Vector3.RotateTowards(n, o, Mathf.PI / 4, 0f);
+                outDir.x = o.x;
+                outDir.y = o.y;
+            }
+             
+            collision.rigidbody.AddForce(outDir * storedForce * baseScaleSpeed);
+        }
     }
 }
